@@ -1,4 +1,4 @@
-import BarChart from './BarChart';
+import VerticalBarChart from './VerticalBarChart';
 
 // const data = {
 //   width: 500,
@@ -18,11 +18,7 @@ import BarChart from './BarChart';
 //   barClass: 'barChart', // class name to svg element
 // }
 
-const data = [
-  [10, 20, 30],
-  [10, 20, 30],
-  [10, 20, 30]
-]
+const data = [{ x:10, y:10}, {x:20, y:1}, {x:30, y:2}]
 
 
 function App() {
@@ -30,7 +26,7 @@ function App() {
 
   return (
     <div className="App">
-      <BarChart
+      <VerticalBarChart
         width={600}
         height={600}
         data={data}
