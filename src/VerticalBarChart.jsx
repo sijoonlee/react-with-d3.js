@@ -68,6 +68,25 @@ function VerticalBarChart({ width, height, data, padding, barWidth, className })
                 .attr("height", (d) => yScale(d))
                 .attr("y", (d) => height - yScale(d) + yPadding)
 
+        const getColor = d3.scaleSequential()
+            .domain([d3.min(data.map(d => d.y))*0.8,d3.max(data.map(d => d.y))*1.2])
+            .interpolator(d3.interpolateMagma)
+                // https://observablehq.com/@d3/working-with-color
+                // d3.interpolateRgb("red", "blue"))
+                // d3.interpolateCool
+                // d3.interpolateWarm
+                // d3.interpolateMagma
+                // d3.interpolateInferno
+                // d3.interpolateRainbow
+                // d3.interpolateSpectral
+                // d3.interpolatePRGn
+                // d3.interpolateViridis
+                // d3.interpolateCubehelixDefault
+
+        // const getColor = d3.scaleLinear()
+        //     .domain([0, 5, 10])
+        //     .range(['red', '#ddd', 'blue']);
+
         selection
             .enter()
             .append("rect")
@@ -75,7 +94,7 @@ function VerticalBarChart({ width, height, data, padding, barWidth, className })
             .attr("y", (d) => height - yPadding)
             .attr("width", _barWidth)
             .attr("height", (d) => 0)
-            .attr("fill", "orange")
+            .attr("fill", (d) => getColor(d.y))//"orange")
             .on("mouseover", mouseover)
             .on("mousemove", mousemove)
             .on("mouseleave", mouseleave)
